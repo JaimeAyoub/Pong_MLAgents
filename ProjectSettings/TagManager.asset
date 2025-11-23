@@ -9,6 +9,7 @@ TagManager:
   - WallX
   - GolIzquierda
   - GolDerecha
+  - Player2
   layers:
   - Default
   - TransparentFX

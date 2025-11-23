@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using Random = UnityEngine.Random;
@@ -7,14 +8,19 @@ public class Ball : MonoBehaviour
 {
     private Rigidbody2D rb;
     public Vector2 speed;
+    public GameObject lastWhoTouched;
+    private ScoreManager scoreManager;
+    private Vector2 center = new Vector2(0, 0);
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         if (rb == null)
             rb = gameObject.AddComponent<Rigidbody2D>();
+        if (scoreManager == null)
+            scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 
-        SetUp();
+        // SetUp();
     }
 
     // Update is called once per frame
@@ -45,28 +51,31 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        ChangeDirection(other.gameObject.tag);
-    }
+        Debug.Log(other.gameObject.tag);
 
-    void ChangeDirection(String tag)
-    {
-        if (tag == "GolIzquierda")
-            speed.x = -speed.x;
-        else if (tag == "GolDerecha")
-            
-        if (tag == "WallY")
-            speed.y = -speed.y;
-        if (tag == "Player")
+        if (other.gameObject.CompareTag("WallY"))
+            speed.y *= -1;
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Player2"))
         {
-            speed = ChangeVelocityRandom();
-            speed.x = -speed.x;
+            lastWhoTouched = other.gameObject;
+            int randomVelocityY = Random.Range(1, 10);
+            Debug.Log("Cambio");
+            speed.x *= -1;
             int randomY = Random.Range(1, 3);
             if (randomY == 1)
-                speed.y = -speed.y;
+                speed.y = -1 * randomVelocityY;
             else if (randomY == 2)
-                speed.y = speed.y;
+                speed.y = randomVelocityY;
+        }
+
+        if ((other.gameObject.CompareTag("GolIzquierda") || (other.gameObject.CompareTag("GolDerecha"))))
+        {
+            Debug.Log("Gol");
+            scoreManager.AddScore(lastWhoTouched);
+            StartCoroutine(ResetBall());
         }
     }
+
 
     void MoveBall()
     {
@@ -75,10 +84,23 @@ public class Ball : MonoBehaviour
         Mathf.Clamp(rb.linearVelocityY, -20, 20);
     }
 
-    Vector2 ChangeVelocityRandom()
+    IEnumerator ResetBall()
     {
-        int speedX = Random.Range(5, 16);
-        int speedY = Random.Range(5, 16);
-        return new Vector2(speedX, speedY);
+        speed = Vector2.zero;
+        rb.MovePosition(center);
+
+        int randomVelocityX = Random.Range(-10, 11);
+        int randomVelocityY = Random.Range(-5, 6);
+
+
+        yield return new WaitForSeconds(2.0f);
+        speed.x = randomVelocityX;
+        speed.y = randomVelocityY;
+    }
+
+    void Reset()
+    {
+        StartCoroutine(ResetBall());
+        
     }
 }

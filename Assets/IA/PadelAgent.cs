@@ -46,8 +46,7 @@ public class PadelAgent : Agent
         pos.y += controlSignal.y * Time.deltaTime * velocity;
         rBody.position = pos;
 
-
-        // Salio de bordes
+        
         if (transform.position.y < -4.0f || transform.position.y > 4.0f) //Se salio de los bordes
         {
             EndEpisode();

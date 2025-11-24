@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
+using Unity.VisualScripting;
 
 public class PadelAgent : Agent
 {
@@ -20,7 +21,10 @@ public class PadelAgent : Agent
     {
         // Empezamos de nuevo
         Target.Reseto();
-        transform.position = this.gameObject.CompareTag("Player") ? new Vector2(8, 0) : new Vector2(-8, 0);
+        if ((transform.position.y < -5.0f || transform.position.y > 5.0f))
+        {
+            transform.position = this.gameObject.CompareTag("Player") ? new Vector2(8, 0) : new Vector2(-8, 0);
+        }
     }
 
     override public void CollectObservations(VectorSensor sensor)
@@ -33,8 +37,7 @@ public class PadelAgent : Agent
         sensor.AddObservation(Target.transform.position.y);
 
         // Pelota velocidad
-        sensor.AddObservation(Target.speed.x);
-        sensor.AddObservation(Target.speed.y);
+        sensor.AddObservation(Target.GetComponent<Rigidbody2D>().linearVelocity);
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
@@ -46,8 +49,8 @@ public class PadelAgent : Agent
         pos.y += controlSignal.y * Time.deltaTime * velocity;
         rBody.position = pos;
 
-        
-        if (transform.position.y < -4.0f || transform.position.y > 4.0f) //Se salio de los bordes
+
+        if (transform.position.y < -5.0f || transform.position.y > 5.0f) //Se salio de los bordes
         {
             EndEpisode();
         }
@@ -74,6 +77,6 @@ public class PadelAgent : Agent
     void Update()
     {
     }
-    
+
     //mlagents-learn Pad.yaml --run-id=Pad0
 }

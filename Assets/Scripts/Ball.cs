@@ -8,7 +8,7 @@ public class Ball : MonoBehaviour
 {
     private Rigidbody2D rb;
     public Vector2 speed;
-    public GameObject lastWhoTouched;
+    public PadelAgent lastWhoTouched;
     private ScoreManager scoreManager;
     private Vector2 center = new Vector2(0, 0);
 
@@ -20,7 +20,7 @@ public class Ball : MonoBehaviour
         if (scoreManager == null)
             scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 
-        // SetUp();
+        Reset();
     }
 
     // Update is called once per frame
@@ -29,35 +29,19 @@ public class Ball : MonoBehaviour
         MoveBall();
     }
 
-    void SetUp()
-    {
-        DirectionStart();
-    }
-
-    void DirectionStart()
-    {
-        int randomPosX = Random.Range(1, 3);
-        if (randomPosX == 1)
-            speed.x = randomPosX * -10;
-        else if (randomPosX == 2)
-            speed.x = randomPosX * 10;
-
-        int randomPosY = Random.Range(1, 3);
-        if (randomPosY == 1)
-            speed.y = randomPosY * -10;
-        else if (randomPosY == 2)
-            speed.y = randomPosY * 10;
-    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log(other.gameObject.tag);
+        //Debug.Log(other.gameObject.tag);
 
         if (other.gameObject.CompareTag("WallY"))
             speed.y *= -1;
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Player2"))
         {
-            lastWhoTouched = other.gameObject;
+            var agent = other.gameObject.GetComponent<PadelAgent>();
+            lastWhoTouched = agent;
+            agent.HitBall();
+
             int randomVelocityY = Random.Range(1, 10);
             Debug.Log("Cambio");
             speed.x *= -1;
@@ -71,8 +55,19 @@ public class Ball : MonoBehaviour
         if ((other.gameObject.CompareTag("GolIzquierda") || (other.gameObject.CompareTag("GolDerecha"))))
         {
             Debug.Log("Gol");
-            scoreManager.AddScore(lastWhoTouched);
-            StartCoroutine(ResetBall());
+            if (lastWhoTouched != null)
+            {
+                // scoreManager.AddScore(lastWhoTouched);
+                lastWhoTouched.AddReward(+1.0f);
+
+                foreach (var agent in FindObjectsOfType<PadelAgent>())
+                {
+                    if (agent != lastWhoTouched)
+                        agent.MissBall();
+                }
+
+                Reseto();
+            }
         }
     }
 
@@ -80,16 +75,16 @@ public class Ball : MonoBehaviour
     void MoveBall()
     {
         rb.linearVelocity = speed;
-        Mathf.Clamp(rb.linearVelocityX, -20, 20);
-        Mathf.Clamp(rb.linearVelocityY, -20, 20);
+        if (speed.x == 0)
+            speed.x = 20;
     }
 
-    IEnumerator ResetBall()
+    public IEnumerator ResetBall()
     {
         speed = Vector2.zero;
-        rb.MovePosition(center);
+        rb.transform.position = center;
 
-        int randomVelocityX = Random.Range(-10, 11);
+        int randomVelocityX = Random.Range(-20, 21);
         int randomVelocityY = Random.Range(-5, 6);
 
 
@@ -98,9 +93,22 @@ public class Ball : MonoBehaviour
         speed.y = randomVelocityY;
     }
 
+    public void Reseto()
+    {
+        speed = Vector2.zero;
+        rb.transform.position = center;
+
+        int randomVelocityX = Random.Range(-20, 21);
+        int randomVelocityY = Random.Range(-5, 6);
+
+
+        speed.x = randomVelocityX;
+        speed.y = randomVelocityY;
+    }
+
     void Reset()
     {
+        StopAllCoroutines();
         StartCoroutine(ResetBall());
-        
     }
 }

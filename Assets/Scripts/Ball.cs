@@ -43,7 +43,7 @@ public class Ball : MonoBehaviour
             agent.HitBall();
 
             int randomVelocityY = Random.Range(1, 10);
-            Debug.Log("Cambio");
+           // Debug.Log("Cambio");
             speed.x *= -1;
             int randomY = Random.Range(1, 3);
             if (randomY == 1)
@@ -54,7 +54,7 @@ public class Ball : MonoBehaviour
 
         if ((other.gameObject.CompareTag("GolIzquierda") || (other.gameObject.CompareTag("GolDerecha"))))
         {
-            Debug.Log("Gol");
+           // Debug.Log("Gol");
             if (lastWhoTouched != null)
             {
                 // scoreManager.AddScore(lastWhoTouched);

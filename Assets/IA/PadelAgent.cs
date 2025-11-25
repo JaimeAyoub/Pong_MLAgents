@@ -20,21 +20,25 @@ public class PadelAgent : Agent
     override public void OnEpisodeBegin()
     {
         // Empezamos de nuevo
+
+       // transform.position = this.gameObject.CompareTag("Player") ? new Vector2(8, 0) : new Vector2(-8, 0);
+
         Target.Reseto();
-        if ((transform.position.y < -5.0f || transform.position.y > 5.0f))
-        {
-            transform.position = this.gameObject.CompareTag("Player") ? new Vector2(8, 0) : new Vector2(-8, 0);
-        }
     }
 
     override public void CollectObservations(VectorSensor sensor)
     {
+        Vector2 distance = new Vector2(Target.transform.position.x - transform.position.x,
+            Target.transform.position.y - transform.position.y);
         // Pad 
-        sensor.AddObservation(transform.position.y);
+        sensor.AddObservation((transform.position.y) / 5);
+        //Distancia Pad-Pelota
+        sensor.AddObservation((distance.x) / 16);
+        sensor.AddObservation((distance.y) / 16);
 
-        // Pelota posición
-        sensor.AddObservation(Target.transform.position.x);
-        sensor.AddObservation(Target.transform.position.y);
+        // Pelota posiciones
+        sensor.AddObservation((Target.transform.position.x) / 9);
+        sensor.AddObservation((Target.transform.position.y) / 4.5f);
 
         // Pelota velocidad
         sensor.AddObservation(Target.GetComponent<Rigidbody2D>().linearVelocity);
@@ -52,6 +56,8 @@ public class PadelAgent : Agent
 
         if (transform.position.y < -5.0f || transform.position.y > 5.0f) //Se salio de los bordes
         {
+            AddReward(-0.2f);
+            transform.position = new Vector2(transform.position.x, 0f);
             EndEpisode();
         }
     }

@@ -28,7 +28,6 @@ public class PadelAgent : Agent
 
     override public void CollectObservations(VectorSensor sensor)
     {
-
         Vector2 distance = this.transform.position - Target.transform.position;
         // Pad 
         sensor.AddObservation((transform.position.y) / 5);
@@ -57,9 +56,15 @@ public class PadelAgent : Agent
 
         if (transform.position.y < -5.0f || transform.position.y > 5.0f) //Se salio de los bordes
         {
-            AddReward(-0.2f);
+            AddReward(-0.4f);
             transform.position = new Vector2(transform.position.x, 0f);
-            // EndEpisode();
+            //EndEpisode();
+        }
+
+        if (Target.transform.position.x < -15.0f ||
+            Target.transform.position.x > 15.0f) //Por alguna razon, cuando hago la simulacion se sale la pelota
+        {
+            EndEpisode();
         }
     }
 
@@ -70,7 +75,7 @@ public class PadelAgent : Agent
 
     public void MissBall()
     {
-        AddReward(-1f); // Gol
+        AddReward(-1.0f); // Gol
         EndEpisode();
     }
 
@@ -79,7 +84,6 @@ public class PadelAgent : Agent
         var continuousActionsOut = actionsOut.ContinuousActions;
         continuousActionsOut[0] = Input.GetAxis("Vertical");
     }
-
 
 
     //mlagents-learn Pad.yaml --run-id=Pad0

@@ -14,8 +14,8 @@ public class Ball : MonoBehaviour
 
     void Start()
     {
-        if (scoreManager == null)
-            scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        // if (scoreManager == null)
+        //     scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 
         Reseto();
     }
@@ -29,18 +29,15 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        //Debug.Log(other.gameObject.tag);
-
         if (other.gameObject.CompareTag("WallY"))
             Velocity.y *= -1;
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Player2"))
         {
-            Debug.Log("Hit");
             var agent = other.gameObject.GetComponent<PadelAgent>();
             lastWhoTouched = agent;
+            //Debug.Log(lastWhoTouched);
             agent.HitBall();
 
-            // Debug.Log("Cambio");
             Velocity.x *= -1;
             int randomY = Random.Range(1, 3);
             if (randomY == 1)
@@ -57,6 +54,7 @@ public class Ball : MonoBehaviour
 
                 foreach (var agent in FindObjectsOfType<PadelAgent>())
                 {
+                    //Debug.Log("Golazo");
                     if (agent != lastWhoTouched)
                         agent.MissBall();
                 }
@@ -65,6 +63,11 @@ public class Ball : MonoBehaviour
             }
             else
             {
+                foreach (var agent in FindObjectsOfType<PadelAgent>())
+                {
+                    agent.MissBall();
+                }
+
                 Reseto();
             }
         }
@@ -84,6 +87,7 @@ public class Ball : MonoBehaviour
 
         if (randomVelocityY == 1)
             Velocity.y *= -1;
+        lastWhoTouched = null;
     }
 
     public void MoveBall()

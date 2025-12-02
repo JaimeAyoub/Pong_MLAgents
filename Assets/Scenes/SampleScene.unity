@@ -201,8 +201,8 @@ Transform:
   m_GameObject: {fileID: 34083783}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.09, y: 1.2229632, z: 0.017077751}
-  m_LocalScale: {x: 1, y: 20.34625, z: 1}
+  m_LocalPosition: {x: 3.78, y: 1.2229632, z: 0.017077751}
+  m_LocalScale: {x: 2.1375, y: 17.039984, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1624470598}
@@ -335,8 +335,8 @@ Transform:
   m_GameObject: {fileID: 338187694}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.72, y: 1.2229632, z: 0.017077751}
-  m_LocalScale: {x: 1, y: 17.865, z: 1}
+  m_LocalPosition: {x: -16.37, y: 1.2229632, z: 0.017077751}
+  m_LocalScale: {x: 2.2, y: 17.865, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1624470598}
@@ -470,7 +470,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.335152, y: -4.52, z: 0.017077751}
-  m_LocalScale: {x: 17.712, y: 1, z: 1}
+  m_LocalScale: {x: 19.040401, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1624470598}
@@ -741,7 +741,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.335152, y: 7, z: 0.017077751}
-  m_LocalScale: {x: 17.712, y: 1, z: 1}
+  m_LocalScale: {x: 18.3762, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1624470598}
@@ -891,7 +891,6 @@ GameObject:
   - component: {fileID: 633315503}
   - component: {fileID: 633315502}
   - component: {fileID: 633315501}
-  - component: {fileID: 633315504}
   m_Layer: 0
   m_Name: Pad1
   m_TagString: Player
@@ -1088,7 +1087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 6
+    VectorObservationSize: 7
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 1
@@ -1097,7 +1096,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: e778e2d4c7e146946b067cff092f1cf0, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: c54e98477af6f3347ae762c7b5940b7d, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 1
   m_BehaviorName: PadBehavior
@@ -1106,22 +1105,6 @@ MonoBehaviour:
   m_UseChildActuators: 1
   m_DeterministicInference: 0
   m_ObservableAttributeHandling: 0
---- !u!114 &633315504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 633315495}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b39908409f050f4a99519d07e983233, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: 8.11
-  ball: {fileID: 1987051644}
-  distanceBallinY: 0
-  distanceBallinX: 0
 --- !u!1 &756525379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,7 +1316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 6
+    VectorObservationSize: 7
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 1
@@ -1342,9 +1325,9 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: e12e8422238423a478fa9023308ed734, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 7bed188875fc1324b847f75e7991bf02, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 1
+  m_BehaviorType: 0
   m_BehaviorName: PadBehavior
   TeamId: 0
   m_UseChildSensors: 1
@@ -1564,7 +1547,7 @@ MonoBehaviour:
   speed: {x: 1, y: 1}
   position: {x: 0, y: 0}
   lastWhoTouched: {fileID: 0}
-  Velocity: {x: 10, y: 2}
+  Velocity: {x: 5, y: 2}
 --- !u!58 &1987051645
 CircleCollider2D:
   m_ObjectHideFlags: 0

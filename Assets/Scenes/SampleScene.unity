@@ -1072,7 +1072,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  Target: {fileID: 0}
+  Target: {fileID: 1987051644}
   velocity: 20
 --- !u!114 &633315503
 MonoBehaviour:
@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 7
+    VectorObservationSize: 6
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 1
@@ -1096,9 +1096,9 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: e309d21eed6701f45859a91493f8b92d, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: e778e2d4c7e146946b067cff092f1cf0, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 1
   m_BehaviorName: PadBehavior
   TeamId: 0
   m_UseChildSensors: 1
@@ -1301,7 +1301,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  Target: {fileID: 0}
+  Target: {fileID: 1987051644}
   velocity: 20
 --- !u!114 &756525387
 MonoBehaviour:
@@ -1316,7 +1316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 7
+    VectorObservationSize: 6
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 1
@@ -1325,9 +1325,9 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 54c1af5948bd230489b39d05b31c6d87, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: e12e8422238423a478fa9023308ed734, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 1
   m_BehaviorName: PadBehavior
   TeamId: 0
   m_UseChildSensors: 1
@@ -1544,7 +1544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58dd080f9aaffb943b420f03a826b84e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 0}
+  speed: {x: 1, y: 2}
+  position: {x: 0, y: 0}
   lastWhoTouched: {fileID: 0}
 --- !u!58 &1987051645
 CircleCollider2D:

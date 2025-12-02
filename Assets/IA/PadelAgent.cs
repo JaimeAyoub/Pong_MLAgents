@@ -14,30 +14,30 @@ public class PadelAgent : Agent
     void Start()
     {
         rBody = GetComponent<Rigidbody2D>();
-        Target = FindAnyObjectByType<Ball>();
+        //Target = FindAnyObjectByType<Ball>();
     }
 
     override public void OnEpisodeBegin()
     {
         // Empezamos de nuevo
 
-       // transform.position = this.gameObject.CompareTag("Player") ? new Vector2(8, 0) : new Vector2(-8, 0);
+        // transform.position = this.gameObject.CompareTag("Player") ? new Vector2(8, 0) : new Vector2(-8, 0);
 
         Target.Reseto();
     }
 
     override public void CollectObservations(VectorSensor sensor)
     {
-        Vector2 distance = new Vector2(Target.transform.position.x - transform.position.x,
-            Target.transform.position.y - transform.position.y);
+     //   Vector2 distance = new Vector2(Target.transform.position.x - transform.position.x,
+     //       Target.transform.position.y - transform.position.y);
+        float dis = Vector2.Distance(Target.transform.position, this.transform.position);
         // Pad 
         sensor.AddObservation((transform.position.y) / 5);
         //Distancia Pad-Pelota
-        sensor.AddObservation((distance.x) / 16);
-        sensor.AddObservation((distance.y) / 16);
+        sensor.AddObservation((dis) / 16);
 
         // Pelota posiciones
-        sensor.AddObservation((Target.transform.position.x) / 9);
+        sensor.AddObservation((Target.transform.position.x) / 8.4f);
         sensor.AddObservation((Target.transform.position.y) / 4.5f);
 
         // Pelota velocidad
@@ -58,7 +58,7 @@ public class PadelAgent : Agent
         {
             AddReward(-0.2f);
             transform.position = new Vector2(transform.position.x, 0f);
-            EndEpisode();
+            // EndEpisode();
         }
     }
 

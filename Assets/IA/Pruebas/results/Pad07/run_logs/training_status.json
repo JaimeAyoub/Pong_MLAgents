@@ -1,0 +1,29 @@
+{
+    "PadBehavior": {
+        "checkpoints": [
+            {
+                "steps": 2944,
+                "file_path": "results\\Pad07\\PadBehavior\\PadBehavior-2944.onnx",
+                "reward": null,
+                "creation_time": 1764707477.622363,
+                "auxillary_file_paths": [
+                    "results\\Pad07\\PadBehavior\\PadBehavior-2944.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2944,
+            "file_path": "results\\Pad07\\PadBehavior.onnx",
+            "reward": null,
+            "creation_time": 1764707477.622363,
+            "auxillary_file_paths": [
+                "results\\Pad07\\PadBehavior\\PadBehavior-2944.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.7.0+cu128"
+    }
+}

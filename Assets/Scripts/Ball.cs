@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
+using System.Threading;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
 using Random = UnityEngine.Random;
 
 public class Ball : MonoBehaviour
@@ -63,6 +61,10 @@ public class Ball : MonoBehaviour
                         agent.MissBall();
                 }
 
+                Reseto();
+            }
+            else
+            {
                 Reseto();
             }
         }

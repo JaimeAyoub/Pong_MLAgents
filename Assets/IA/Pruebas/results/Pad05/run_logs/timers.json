@@ -1,0 +1,47 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1764707274",
+        "python_version": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\jaimi\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\mlagents-learn Pad.yaml --run-id=Pad05",
+        "mlagents_version": "1.1.0",
+        "mlagents_envs_version": "1.1.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.7.0+cu128",
+        "numpy_version": "1.23.5",
+        "end_time_seconds": "1764707295"
+    },
+    "total": 21.251910099999805,
+    "count": 1,
+    "self": 0.0046118999998725485,
+    "children": {
+        "run_training.setup": {
+            "total": 0.1096029999998791,
+            "count": 1,
+            "self": 0.1096029999998791
+        },
+        "TrainerController.start_learning": {
+            "total": 21.137695200000053,
+            "count": 1,
+            "self": 0.00031180000132735586,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 21.137371799999528,
+                    "count": 1,
+                    "self": 21.137371799999528
+                },
+                "trainer_threads": {
+                    "total": 6.999998731771484e-07,
+                    "count": 1,
+                    "self": 6.999998731771484e-07
+                },
+                "TrainerController._save_models": {
+                    "total": 1.089999932446517e-05,
+                    "count": 1,
+                    "self": 1.089999932446517e-05
+                }
+            }
+        }
+    }
+}

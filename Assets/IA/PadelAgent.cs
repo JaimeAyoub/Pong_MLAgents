@@ -28,20 +28,21 @@ public class PadelAgent : Agent
 
     override public void CollectObservations(VectorSensor sensor)
     {
-     //   Vector2 distance = new Vector2(Target.transform.position.x - transform.position.x,
-     //       Target.transform.position.y - transform.position.y);
-        float dis = Vector2.Distance(Target.transform.position, this.transform.position);
+
+        Vector2 distance = this.transform.position - Target.transform.position;
         // Pad 
         sensor.AddObservation((transform.position.y) / 5);
         //Distancia Pad-Pelota
-        sensor.AddObservation((dis) / 16);
+        sensor.AddObservation((distance.x) / 16.3f);
+        sensor.AddObservation((distance.y) / 9);
 
         // Pelota posiciones
-        sensor.AddObservation((Target.transform.position.x) / 8.4f);
-        sensor.AddObservation((Target.transform.position.y) / 4.5f);
+        sensor.AddObservation((Target.position.x) / 8.4f);
+        sensor.AddObservation((Target.position.y) / 4.5f);
 
         // Pelota velocidad
-        sensor.AddObservation(Target.GetComponent<Rigidbody2D>().linearVelocity);
+        sensor.AddObservation(Target.Velocity.x);
+        sensor.AddObservation(Target.Velocity.y);
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
@@ -79,10 +80,7 @@ public class PadelAgent : Agent
         continuousActionsOut[0] = Input.GetAxis("Vertical");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+
 
     //mlagents-learn Pad.yaml --run-id=Pad0
 }

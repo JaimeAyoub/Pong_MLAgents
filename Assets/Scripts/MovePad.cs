@@ -5,7 +5,8 @@ public class MovePad : MonoBehaviour
     private Rigidbody2D rb;
     public float velocity;
     public Ball ball;
-    public float distanceBall;
+    public float distanceBallinY;
+    public float distanceBallinX;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,6 +39,9 @@ public class MovePad : MonoBehaviour
 
     void DistanceBall()
     {
-        distanceBall = Vector2.Distance(transform.position, ball.transform.position);
+        distanceBallinX =  rb.position.x - ball.transform.position.x;
+        distanceBallinY =  rb.position.y - ball.transform.position.y;
+        
+        //MaxDistance in X 16.30 y en Y 9
     }
 }

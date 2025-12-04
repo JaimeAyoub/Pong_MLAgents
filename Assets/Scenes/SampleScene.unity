@@ -1096,9 +1096,9 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: c54e98477af6f3347ae762c7b5940b7d, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 9cbb97f5e422bc149a169050bcfb3bba, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 1
+  m_BehaviorType: 0
   m_BehaviorName: PadBehavior
   TeamId: 0
   m_UseChildSensors: 1
@@ -1325,7 +1325,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 7bed188875fc1324b847f75e7991bf02, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 769431970204fd54a962c9f65e7a3547, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: PadBehavior
@@ -1547,7 +1547,7 @@ MonoBehaviour:
   speed: {x: 1, y: 1}
   position: {x: 0, y: 0}
   lastWhoTouched: {fileID: 0}
-  Velocity: {x: 5, y: 2}
+  Velocity: {x: 2, y: 2}
 --- !u!58 &1987051645
 CircleCollider2D:
   m_ObjectHideFlags: 0

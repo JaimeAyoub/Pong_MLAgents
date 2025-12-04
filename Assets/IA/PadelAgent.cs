@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
@@ -6,14 +7,12 @@ using Unity.VisualScripting;
 
 public class PadelAgent : Agent
 {
-    Rigidbody2D rBody;
     public Ball Target;
     public float velocity;
 
 
     void Start()
     {
-        rBody = GetComponent<Rigidbody2D>();
         //Target = FindAnyObjectByType<Ball>();
     }
 
@@ -30,7 +29,7 @@ public class PadelAgent : Agent
     {
         Vector2 distance = this.transform.position - Target.transform.position;
         // Pad 
-        sensor.AddObservation((transform.position.y) / 5);
+        sensor.AddObservation((transform.position.y) / 5.0f);
         //Distancia Pad-Pelota
         sensor.AddObservation((distance.x) / 16.3f);
         sensor.AddObservation((distance.y) / 9);
@@ -49,12 +48,12 @@ public class PadelAgent : Agent
         // Actions, size = 1
         Vector2 controlSignal = Vector2.zero;
         controlSignal.y = actionBuffers.ContinuousActions[0];
-        var pos = rBody.position;
+        var pos = transform.position;
         pos.y += controlSignal.y * Time.deltaTime * velocity;
-        rBody.position = pos;
+        transform.position = pos;
 
 
-        if (transform.position.y < -5.0f || transform.position.y > 5.0f) //Se salio de los bordes
+        if (transform.position.y < -5.5f || transform.position.y > 5.5f) //Se salio de los bordes
         {
             AddReward(-0.4f);
             transform.position = new Vector2(transform.position.x, 0f);
@@ -64,7 +63,7 @@ public class PadelAgent : Agent
         if (Target.transform.position.x < -15.0f ||
             Target.transform.position.x > 15.0f) //Por alguna razon, cuando hago la simulacion se sale la pelota
         {
-            EndEpisode();
+            Target.Reseto();
         }
     }
 
@@ -76,6 +75,12 @@ public class PadelAgent : Agent
     public void MissBall()
     {
         AddReward(-1.0f); // Gol
+        EndEpisode();
+    }
+
+    public void MetioGol()
+    {
+        AddReward(1.0f);
         EndEpisode();
     }
 

@@ -50,7 +50,7 @@ public class Ball : MonoBehaviour
             if (lastWhoTouched != null)
             {
                 // scoreManager.AddScore(lastWhoTouched);
-                lastWhoTouched.AddReward(+1.0f);
+                lastWhoTouched.MetioGol();
 
                 foreach (var agent in FindObjectsOfType<PadelAgent>())
                 {
@@ -63,11 +63,6 @@ public class Ball : MonoBehaviour
             }
             else
             {
-                foreach (var agent in FindObjectsOfType<PadelAgent>())
-                {
-                    agent.MissBall();
-                }
-
                 Reseto();
             }
         }

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class MovePad : MonoBehaviour
 {
-    private Rigidbody2D rb;
     public float velocity;
     public Ball ball;
     public float distanceBallinY;
@@ -11,11 +10,7 @@ public class MovePad : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        if (rb == null)
-        {
-            rb = gameObject.AddComponent<Rigidbody2D>();
-        }
+     
 
         if (ball == null)
         {
@@ -32,15 +27,17 @@ public class MovePad : MonoBehaviour
 
     void Move()
     {
-        var pos = rb.position;
-        pos.y += Input.GetAxisRaw("Vertical") * Time.deltaTime * velocity;
-        rb.position = pos;
+        var pos = transform.position;
+        pos.y += Input.GetAxis("Vertical") * Time.deltaTime * velocity;
+        transform.position = pos;
+        
+     
     }
 
     void DistanceBall()
     {
-        distanceBallinX =  rb.position.x - ball.transform.position.x;
-        distanceBallinY =  rb.position.y - ball.transform.position.y;
+        distanceBallinX =  transform.position.x - ball.transform.position.x;
+        distanceBallinY =  transform.position.y - ball.transform.position.y;
         
         //MaxDistance in X 16.30 y en Y 9
     }
